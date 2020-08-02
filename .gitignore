@@ -3,3 +3,6 @@
 Datasets/
 SCIoT/
 *.pdf
+*.pyc
+*.egg-info
+*.png
