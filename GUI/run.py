@@ -1,5 +1,15 @@
+# pyqt5
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QTextEdit, QLineEdit, QComboBox, QRadioButton, QLabel, QGraphicsView
 from PyQt5 import uic
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtGui import QPixmap
+# spark model
+from spark_model import *
+# matplotlib
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+import matplotlib.pyplot as plt
+# other
 import sys
 
 
@@ -26,8 +36,8 @@ class UI(QMainWindow):
             QComboBox, "combo_classification")
         self.button_run_model = self.findChild(QPushButton, "button_run_model")
 
-        # Result # ToDo
-        self.graphics_view = self.findChild(QGraphicsView, "graphics_view")
+        # Result
+        self.label_image = self.findChild(QLabel, "label_image")
         self.label_acc = self.findChild(QLabel, "label_acc")
         self.label_auroc = self.findChild(QLabel, "label_auroc")
         self.label_aupr = self.findChild(QLabel, "label_aupr")
@@ -46,6 +56,13 @@ class UI(QMainWindow):
         pattern = self.combo_pattern.currentText()
         date = year+"-"+month+"-"+day
         print("ID: " + customer_id + " Date: " + date + " Pattern: " + pattern)
+        # get daily usage
+        usage = collect_daily_vector(customer_id, date)
+        # call plot function
+        plot_malicious_samples(
+            usage, [True, True, True, True, True, True, True])
+        pixmap = QPixmap("attack.png")
+        self.label_image.setPixmap(pixmap)
 
     def run_model(self):
         this_cutomer = self.radio_this.isChecked()
