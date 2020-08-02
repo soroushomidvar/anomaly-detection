@@ -86,7 +86,7 @@
            </size>
           </property>
           <property name="currentText">
-           <string>2015</string>
+           <string>2014</string>
           </property>
           <item>
            <property name="text">
@@ -433,7 +433,20 @@
        </layout>
       </item>
       <item>
-       <widget class="QGraphicsView" name="graphics_view"/>
+       <widget class="QLabel" name="label_image">
+        <property name="minimumSize">
+         <size>
+          <width>600</width>
+          <height>400</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,2,2,1,1,2,1,1,2,1,1">
