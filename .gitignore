@@ -6,3 +6,4 @@ SCIoT/
 *.pyc
 *.egg-info
 *.png
+GUI/
